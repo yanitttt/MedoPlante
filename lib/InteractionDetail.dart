@@ -29,7 +29,7 @@ class _InteractionDetailState extends State<InteractionDetail> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Détails des interactions'),
-        backgroundColor: Colors.blueGrey,
+        backgroundColor: Colors.deepPurple,
       ),
       body: Center(
         child: ListView(

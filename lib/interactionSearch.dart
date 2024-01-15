@@ -38,7 +38,7 @@ class _InteractionSearchState extends State<InteractionSearch> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              const Text('Entrez le nom du médicament et de la plante pour rechercher les interactions.'),
+              const Text('Entrez le numéro de série du médicament et de la plante pour rechercher les interactions.'),
               TextField(
                 controller: _medicamentController,
                 decoration: const InputDecoration(
@@ -79,7 +79,7 @@ class _InteractionSearchState extends State<InteractionSearch> {
 
     if (result.isNotEmpty) {
       setState(() {
-        _interaction = result.map((row) => row['description'].toString()).toList();
+        //_interaction = result.map((row) => row['description'].toString()).toList();
       });
 
       Navigator.push(

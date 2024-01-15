@@ -20,7 +20,7 @@ class _InteractionListState extends State<InteractionList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Interactions Médicament-Plante'),
+        title: const Text('Liste des interactions'),
         backgroundColor: Colors.deepPurple,
         actions: [
           IconButton(icon: const Icon(Icons.list), onPressed: _pushSaved),

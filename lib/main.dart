@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'loginForm.dart';
 import 'models/dao.dart';
 import 'package:mysql1/mysql1.dart';
+import 'models/SecureStorage.dart';
+import 'ComposantsPerso/bottom_navigation_bar.dart';
 
 
 
@@ -24,13 +26,30 @@ void main() {
       brightness: Brightness.dark,
       primaryColor: Colors.blueGrey,
     ),
-    home: Scaffold(
-      appBar: AppBar(
-        title: const Text('Medo-Plante'),
-      ),
-      body: const LoginForm(),
+    home: FutureBuilder<bool>(
+      future: SecureStorage().isLogged(),
+      builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Scaffold(body: Center(child: CircularProgressIndicator()));
+        } else {
+          if (snapshot.data == true) {
+            return Scaffold(
+              appBar: AppBar(
+                title: const Text('Medo-Plante'),
+              ),
+              body: CustomBottomNavigationBar(),
+            );
+          } else {
+            return Scaffold(
+              appBar: AppBar(
+                title: const Text('Medo-Plante'),
+              ),
+              body: const LoginForm(),
+            );
+          }
+        }
+      },
     ),
   ));
-
   InteractionSearcher._searchInteraction();
 }

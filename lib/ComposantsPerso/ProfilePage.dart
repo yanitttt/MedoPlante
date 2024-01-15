@@ -1,5 +1,6 @@
-// ProfilePage.dart
 import 'package:flutter/material.dart';
+import '../LoginForm.dart'; // Assurez-vous d'importer LoginForm
+import '../models/SecureStorage.dart'; // Assurez-vous d'importer SecureStorage
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -9,6 +10,20 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   String username = 'Utilisateur';
   String email = 'utilisateur@example.com';
+
+void _logout() async {
+  await SecureStorage().deleteSession();
+  bool isLogged = await SecureStorage().isLogged();
+  print(isLogged.toString()); // Imprime l'état de connexion après la première suppression
+  
+  if (!isLogged) {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => LoginForm()),
+    );
+  }
+}
+
 
   @override
   Widget build(BuildContext context) {
@@ -66,9 +81,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               SizedBox(height: 10),
               ElevatedButton(
-                onPressed: () {
-                  // Déconnexion
-                },
+                onPressed: _logout,
                 child: Text('Déconnexion'),
                 style: ElevatedButton.styleFrom(
                   primary: Colors.deepPurple,

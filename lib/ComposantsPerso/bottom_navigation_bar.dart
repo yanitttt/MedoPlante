@@ -44,7 +44,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.local_pharmacy),
-            label: 'Médicaments',
+            label: 'Intéractions',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.star),
@@ -56,7 +56,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
+        selectedItemColor: Colors.deepPurple,
         unselectedItemColor: Colors.white, // Ajoutez cette ligne
         onTap: _onItemTapped,
       ),
