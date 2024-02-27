@@ -40,24 +40,24 @@ class _InteractionDetailState extends State<InteractionDetail> {
                 children: <Widget>[
                   Row(
                     children: <Widget>[
-                      Text(
+                      const Text(
                         'Médicament: ',
-                        style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.blueGrey),
+                        style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.blueGrey),
                       ),
                       Text(
-                        '$medicamentName',
+                        medicamentName,
                         style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.white),
                       ),
                     ],
                   ),
                   Row(
                     children: <Widget>[
-                      Text(
+                      const Text(
                         'Plante: ',
-                        style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.blueGrey),
+                        style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.blueGrey),
                       ),
                       Text(
-                        '$planteName',
+                        planteName,
                         style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.white),
                       ),
                     ],

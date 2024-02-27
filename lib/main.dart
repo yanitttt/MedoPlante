@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:medo_plante_1/login_page.dart';
 import 'loginForm.dart';
 import 'models/dao.dart';
 import 'package:mysql1/mysql1.dart';
@@ -35,16 +36,16 @@ void main() {
           if (snapshot.data == true) {
             return Scaffold(
               appBar: AppBar(
-                title: const Text('Medo-Plante'),
+                //title: const Text('Medo-Plante'),
               ),
-              body: CustomBottomNavigationBar(),
+              body: const CustomBottomNavigationBar(),
             );
           } else {
             return Scaffold(
               appBar: AppBar(
-                title: const Text('Medo-Plante'),
+                //title: const Text('Medo-Plante'),
               ),
-              body: const LoginForm(),
+              body: const LoginPage(),
             );
           }
         }

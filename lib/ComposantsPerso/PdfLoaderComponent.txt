@@ -1,0 +1,59 @@
+import 'package:flutter/material.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:pdf_text/pdf_text.dart';
+
+class PdfLoaderComponent extends StatefulWidget {
+  @override
+  _PdfLoaderComponentState createState() => _PdfLoaderComponentState();
+}
+
+class _PdfLoaderComponentState extends State<PdfLoaderComponent> {
+  String _extractedText = '';
+  String _medicaments = '';
+
+  void _pickAndExtractTextFromPdf() async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['pdf'],
+    );
+
+    if (result != null) {
+      PDFDoc doc = await PDFDoc.fromPath(result.files.single.path!);
+      String text = await doc.text;
+
+      setState(() {
+        _extractedText = text;
+        _medicaments = _extractMedicaments(text);
+      });
+    }
+  }
+
+  String _extractMedicaments(String text) {
+    // Implémentez votre logique ici pour extraire les noms des médicaments
+    // Par exemple, en cherchant des mots clés ou en utilisant des expressions régulières
+    return "Médicaments extraits";
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Chargez une Ordonnance'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            ElevatedButton(
+              onPressed: _pickAndExtractTextFromPdf,
+              child: Text('Sélectionner un PDF'),
+            ),
+            SizedBox(height: 20),
+            Text(_medicaments),
+            // Vous pouvez afficher _extractedText pour tester
+          ],
+        ),
+      ),
+    );
+  }
+}

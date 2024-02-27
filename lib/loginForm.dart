@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mysql1/mysql1.dart';
-import 'interactionSearch.dart';
 import 'ComposantsPerso/bottom_navigation_bar.dart';
 import 'models/SecureStorage.dart';
 
@@ -18,7 +17,7 @@ class _LoginFormState extends State<LoginForm> {
   @override
   void initState() {
     super.initState();
-    checkLoginStatus();
+    //checkLoginStatus();
   }
 
   void checkLoginStatus() async {
@@ -26,7 +25,7 @@ class _LoginFormState extends State<LoginForm> {
     if (isLogged) {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => CustomBottomNavigationBar()),
+        MaterialPageRoute(builder: (context) => const CustomBottomNavigationBar()),
       );
     }
   }
@@ -40,7 +39,7 @@ Widget build(BuildContext context) {
         return const Scaffold(body: Center(child: CircularProgressIndicator()));
       } else {
         if (snapshot.data == true) {
-          return CustomBottomNavigationBar();
+          return const CustomBottomNavigationBar();
         } else {
           return Scaffold(
             appBar: AppBar(
@@ -103,7 +102,8 @@ Widget build(BuildContext context) {
 }
 
 
-  void _login() async {
+void _login() async {
+  try {
     final conn = await MySqlConnection.connect(ConnectionSettings(
       host: '82.165.56.139', 
       port: 3306,
@@ -122,10 +122,17 @@ Widget build(BuildContext context) {
       SecureStorage().createSession(result.first[0]);
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => CustomBottomNavigationBar()),
+        MaterialPageRoute(builder: (context) => const CustomBottomNavigationBar()),
       );
     } else {
-      // Les informations de connexion sont incorrectes
+      print("Informations de connexion incorrectes");
+      // Afficher un message d'erreur à l'utilisateur
     }
+  } catch (e) {
+    print("Erreur de connexion à la base de données: $e");
+    // Afficher un message d'erreur à l'utilisateur
   }
+}
+
+
 }

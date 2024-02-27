@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mysql1/mysql1.dart';
 import 'InteractionDetail.dart';
-import 'ComposantsPerso/bottom_navigation_bar.dart'; // Ajoutez cette ligne
+// Ajoutez cette ligne
 
 class InteractionSearch extends StatefulWidget {
   final String? medicamentId;
